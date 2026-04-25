@@ -1,50 +1,82 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --background: 210 40% 98%;
-  --foreground: 222 47% 11%;
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
-  --primary: 221 83% 53%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
-  --accent: 210 40% 96%;
-  --accent-foreground: 222 47% 11%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 221 83% 53%;
-  --radius: 0.75rem;
+@theme {
+  --color-background: hsl(210 40% 98%);
+  --color-foreground: hsl(222 47% 11%);
+  
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222 47% 11%);
+  
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(222 47% 11%);
+  
+  --color-primary: hsl(221 83% 53%);
+  --color-primary-foreground: hsl(210 40% 98%);
+  
+  --color-secondary: hsl(210 40% 96%);
+  --color-secondary-foreground: hsl(222 47% 11%);
+  
+  --color-muted: hsl(210 40% 96%);
+  --color-muted-foreground: hsl(215 16% 47%);
+  
+  --color-accent: hsl(210 40% 96%);
+  --color-accent-foreground: hsl(222 47% 11%);
+  
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  
+  --color-border: hsl(214 32% 91%);
+  --color-input: hsl(214 32% 91%);
+  --color-ring: hsl(221 83% 53%);
+  
+  --radius-lg: 0.75rem;
+
+  @keyframes scan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+  }
+
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
+/* Enhanced Dark mode overrides for maximum visibility */
 .dark {
-  --background: 222 47% 4%;
-  --foreground: 210 40% 98%;
-  --card: 222 47% 6%;
-  --card-foreground: 210 40% 98%;
-  --popover: 222 47% 6%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 217 91% 60%;
-  --primary-foreground: 222 47% 11%;
-  --secondary: 217 32% 17%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217 32% 17%;
-  --muted-foreground: 215 20% 65%;
-  --accent: 217 32% 17%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 217 32% 17%;
-  --input: 217 32% 17%;
-  --ring: 224 76% 48%;
+  --color-background: hsl(222 47% 4%);
+  --color-foreground: hsl(210 40% 98%);
+  
+  --color-card: hsl(222 47% 8%); /* Slightly lighter than background */
+  --color-card-foreground: hsl(210 40% 98%);
+  
+  --color-popover: hsl(222 47% 8%);
+  --color-popover-foreground: hsl(210 40% 98%);
+  
+  --color-primary: hsl(217 91% 60%);
+  --color-primary-foreground: hsl(222 47% 11%);
+  
+  --color-secondary: hsl(217 32% 17%);
+  --color-secondary-foreground: hsl(210 40% 98%);
+  
+  --color-muted: hsl(217 32% 17%);
+  --color-muted-foreground: hsl(215 20% 75%); /* Lighter for better contrast */
+  
+  --color-accent: hsl(217 32% 20%);
+  --color-accent-foreground: hsl(210 40% 98%);
+  
+  --color-destructive: hsl(0 62% 30%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  
+  --color-border: hsl(217 32% 20%); /* More visible border */
+  --color-input: hsl(217 32% 20%);
+  --color-ring: hsl(224 76% 48%);
 }
 
 @layer base {
@@ -57,32 +89,17 @@
   }
 }
 
+/* Premium Glassmorphism with high visibility */
 .glass {
-  @apply bg-white/70 dark:bg-black/70 backdrop-blur-md border border-white/20 dark:border-white/10;
+  @apply bg-white/80 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200/50 dark:border-white/10 shadow-sm;
 }
 
 .animate-in {
   animation: animate-in 0.5s ease-out;
 }
 
-@keyframes animate-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Face Scan Animation */
 .scan-line {
   @apply absolute left-0 right-0 h-1 bg-primary/50 shadow-[0_0_15px_rgba(59,130,246,0.8)] z-10;
   animation: scan 2s linear infinite;
-}
-
-@keyframes scan {
-  0% { top: 0%; }
-  100% { top: 100%; }
 }
